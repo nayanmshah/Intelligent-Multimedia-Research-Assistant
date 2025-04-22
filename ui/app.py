@@ -1,7 +1,7 @@
 import streamlit as st
-from app.ingestion import extract_text_from_pdf
-from app.embedding import create_vectorstore_from_text
-from app.rag_pipeline import answer_question
+from ..app.ingestion import extract_text_from_pdf
+from ..app.embedding import create_vectorstore_from_text
+from ..app.rag_pipeline import answer_question
 
 st.title("🧠 IMRA - Intelligent Multimedia Research Assistant")
 
