@@ -1,0 +1,10 @@
+streamlit
+langchain
+huggingface_hub
+PyPDF2
+faiss-cpu
+sentence-transformers
+diffusers  # Optional for vision
+torch
+torchvision
+python-dotenv
