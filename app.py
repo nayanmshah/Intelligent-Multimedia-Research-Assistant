@@ -1,10 +1,4 @@
-import sys
-import os
 import streamlit as st
-
-# Add the parent directory to the path so `app` is importable
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 from app.ingestion import extract_text_from_pdf
 from app.embedding import create_vectorstore_from_text
 from app.rag_pipeline import answer_question
