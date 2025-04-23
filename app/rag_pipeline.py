@@ -11,7 +11,7 @@ from langchain_huggingface import HuggingFacePipeline
 load_env_variables()
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 
-embeddings = HuggingFaceEmbeddings()
+embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-MiniLM-L6-v2")
 vectorstore_path = "faiss_store"
 
 def answer_question(query):
