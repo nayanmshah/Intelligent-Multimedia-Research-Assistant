@@ -22,7 +22,7 @@ else:
     vectorstore = FAISS.from_documents([dummy_doc], embeddings)
 
 retriever = vectorstore.as_retriever()
-llm = HuggingFaceHub(repo_id="google/flan-t5-base")
+llm = HuggingFaceHub(repo_id="google/flan-t5-large")
 qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
 
 def answer_question(query):
