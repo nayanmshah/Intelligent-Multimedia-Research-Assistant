@@ -11,7 +11,7 @@ from langchain.llms import HuggingFaceHub
 load_env_variables()
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 
-embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-MiniLM-L6-v2")
+embeddings = HuggingFaceEmbeddings()
 vectorstore_path = "faiss_store"
 
 def answer_question(query):
@@ -29,7 +29,7 @@ def answer_question(query):
         return f"Vector index failed to load properly ({type(e).__name__}: {str(e)}). Please re-upload your document."
 
     llm = HuggingFaceHub(
-        repo_id="google/flan-t5-base", 
+        repo_id="google/flan-t5-xxl", 
         model_kwargs={"temperature":0, "max_length":256}
     )
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
