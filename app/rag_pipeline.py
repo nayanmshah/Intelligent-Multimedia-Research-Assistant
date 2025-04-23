@@ -2,6 +2,7 @@ import os
 
 from langchain.chains import RetrievalQA
 from langchain.llms import HuggingFaceHub
+from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = os.getenv("HUGGINGFACEHUB_API_TOKEN")
