@@ -2,9 +2,9 @@ import os
 import shutil
 from app.utils import load_env_variables
 from langchain.chains import RetrievalQA
-from langchain.llms import HuggingFaceHub
 from langchain.vectorstores import FAISS
 from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFacePipeline
 
 # Load env vars and token
 load_env_variables()
@@ -25,8 +25,15 @@ def answer_question(query):
         return "Vector index was corrupted. Please re-upload your document."
 
     retriever = vectorstore.as_retriever()
-    llm = HuggingFaceHub(
-        repo_id="declare-lab/flan-alpaca-base"
+    llm = HuggingFacePipeline.from_model_id(
+        model_id="microsoft/Phi-3-mini-4k-instruct",
+        task="text-generation",
+        pipeline_kwargs={
+            "max_new_tokens": 100,
+            "top_k": 50,
+            "temperature": 0.1,
+        },
+        model_kwargs={"trust_remote_code": True}
     )
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
     return qa_chain.run(query)
