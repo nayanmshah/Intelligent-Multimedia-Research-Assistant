@@ -28,13 +28,6 @@ def answer_question(query):
         shutil.rmtree(vectorstore_path, ignore_errors=True)
         return f"Vector index failed to load properly ({type(e).__name__}: {str(e)}). Please re-upload your document."
 
-"""
-    llm = HuggingFacePipeline.from_model_id(
-        model_id = "google/flan-t5-small"
-        task = "text2text-generation"
-    )
-    """
-
     llm = HuggingFaceHub(
         repo_id="google/flan-t5-xxl", 
         model_kwargs={"temperature":0, "max_length":256}
