@@ -1,3 +1,4 @@
+# app/rag_pipeline.py
 import os
 import shutil
 from app.utils import load_env_variables
@@ -20,13 +21,12 @@ def answer_question(query):
 
     try:
         vectorstore = FAISS.load_local(vectorstore_path, embeddings, allow_dangerous_deserialization=True)
-        # Check if index is empty or dimensions mismatch
-        test_query = ["test"]
+        if not vectorstore.index.ntotal or vectorstore.index.ntotal == 0:
+            raise ValueError("FAISS index is empty")
         retriever = vectorstore.as_retriever()
-        retriever.get_relevant_documents(test_query[0])
     except Exception as e:
         shutil.rmtree(vectorstore_path, ignore_errors=True)
-        return f"Vector index failed to load properly ({str(e)}). Please re-upload your document."
+        return f"Vector index failed to load properly ({type(e).__name__}: {str(e)}). Please re-upload your document."
 
     llm = HuggingFacePipeline.from_model_id(
         model_id="declare-lab/flan-alpaca-base",
