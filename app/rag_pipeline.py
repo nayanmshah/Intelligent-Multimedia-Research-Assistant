@@ -19,7 +19,7 @@ def answer_question(query):
         return "No documents embedded yet. Please upload and process a PDF first."
 
     try:
-        vectorstore = FAISS.load_local(vectorstore_path, embeddings)
+        vectorstore = FAISS.load_local(vectorstore_path, embeddings, allow_dangerous_deserialization=True)
     except RuntimeError:
         shutil.rmtree(vectorstore_path, ignore_errors=True)
         return "Vector index was corrupted. Please re-upload your document."
