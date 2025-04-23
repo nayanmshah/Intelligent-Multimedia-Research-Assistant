@@ -26,8 +26,8 @@ def answer_question(query):
 
     retriever = vectorstore.as_retriever()
     llm = HuggingFaceHub(
-        repo_id="google/flan-t5-xl",
-        model_kwargs={"task": "text2text-generation"}
+        repo_id="google/flan-t5-base",
+        model_kwargs={"temperature": 0.3, "max_length": 256}
     )
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
     return qa_chain.run(query)
