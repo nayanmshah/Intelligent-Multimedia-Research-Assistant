@@ -1,4 +1,3 @@
-# app/rag_pipeline.py
 import os
 import shutil
 from app.utils import load_env_variables
@@ -29,7 +28,7 @@ def answer_question(query):
         return f"Vector index failed to load properly ({type(e).__name__}: {str(e)}). Please re-upload your document."
 
     llm = HuggingFacePipeline.from_model_id(
-        model_id="declare-lab/flan-alpaca-base",
+        model_id="MBZUAI/LaMini-Flan-T5-783M",
         task="text2text-generation",
         pipeline_kwargs={
             "max_new_tokens": 100,
