@@ -1,3 +1,5 @@
+import os
+
 from langchain.chains import RetrievalQA
 from langchain.llms import HuggingFaceHub
 from langchain.vectorstores import FAISS
