@@ -17,8 +17,9 @@ vectorstore_path = "faiss_store"
 if os.path.exists(os.path.join(vectorstore_path, "index.faiss")):
     vectorstore = FAISS.load_local(vectorstore_path, embeddings)
 else:
-    # Initialize an empty FAISS store
-    vectorstore = FAISS.from_documents([], embeddings)
+    # Initialize FAISS store with a placeholder document to avoid runtime error
+    dummy_doc = Document(page_content="This is a placeholder document.", metadata={})
+    vectorstore = FAISS.from_documents([dummy_doc], embeddings)
 
 retriever = vectorstore.as_retriever()
 llm = HuggingFaceHub(repo_id="google/flan-t5-base")
