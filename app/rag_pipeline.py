@@ -5,6 +5,7 @@ from langchain.chains import RetrievalQA
 from langchain.vectorstores import FAISS
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain_huggingface import HuggingFacePipeline
+from langchain.llms import HuggingFaceHub
 
 # Load env vars and token
 load_env_variables()
@@ -27,14 +28,16 @@ def answer_question(query):
         shutil.rmtree(vectorstore_path, ignore_errors=True)
         return f"Vector index failed to load properly ({type(e).__name__}: {str(e)}). Please re-upload your document."
 
+"""
     llm = HuggingFacePipeline.from_model_id(
-        model_id="MBZUAI/LaMini-Flan-T5-783M",
-        task="text2text-generation",
-        pipeline_kwargs={
-            "max_new_tokens": 100,
-            "top_k": 50,
-            "temperature": 0.1,
-        }
+        model_id = "google/flan-t5-small"
+        task = "text2text-generation"
+    )
+    """
+
+    llm = HuggingFaceHub(
+        repo_id="google/flan-t5-xxl", 
+        model_kwargs={"temperature":0, "max_length":256}
     )
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
     return qa_chain.run(query)
