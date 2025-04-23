@@ -29,7 +29,7 @@ def answer_question(query):
         return f"Vector index failed to load properly ({type(e).__name__}: {str(e)}). Please re-upload your document."
 
     llm = HuggingFaceHub(
-        repo_id="google/flan-t5-xxl", 
+        repo_id="google/flan-t5-base", 
         model_kwargs={"temperature":0, "max_length":256}
     )
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
