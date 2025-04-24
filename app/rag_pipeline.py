@@ -33,7 +33,7 @@ def answer_question(query):
 
     # Load a compact, working model
     llm = HuggingFacePipeline.from_model_id(
-        model_id="MBZUAI/LaMini-Flan-T5-783M",
+        model_id="nayanmshah/resume-qa-model",  # 👈 your fine-tuned model
         task="text2text-generation",
         pipeline_kwargs={
             "max_new_tokens": 256,
