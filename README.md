@@ -22,12 +22,6 @@ HUGGINGFACEHUB_API_TOKEN=your_token_here
 ```bash
 streamlit run ui/app.py
 ```
-
-## To Do
-- Add YouTube transcript parsing
-- Add image OCR pipeline
-- Improve query refinement
-- Deploy on Streamlit Cloud or Hugging Face Spaces
 """
 
 ## Application URL
