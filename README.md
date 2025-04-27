@@ -38,7 +38,7 @@ streamlit run ui/app.py
 ![Screenshot 2025-04-23 at 12 55 54 PM](https://github.com/user-attachments/assets/3d701650-8155-4aba-a13e-bacf88deecd6)
 
 
-## Output after tuning the model for resume
+## Output after tuning the model for resume (see fine-tuning repo at https://github.com/nayanmshah/Intelligent-Multimedia-Research-Assistant-model-finetune)
 
 ![Screenshot 2025-04-24 at 1 57 56 PM](https://github.com/user-attachments/assets/268cbd14-3ac5-4fe3-a05a-75237b9c175b)
 
